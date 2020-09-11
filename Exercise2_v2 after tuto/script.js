@@ -21,17 +21,11 @@ function ready(){
     document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 }
 
-function purchaseClicked() {
-    alert('Thank you for your purchase')
-    updateCartTotal()
-}
-
-
 function quantityChanged(event) {
     var input = event.target
-    // if (isNaN(input.value) || input.value <= 0) {
+    if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
-    // }
+    }
     updateCartTotal()
 }
 
@@ -58,9 +52,7 @@ function addItemToCart(title, price, imageSrc){
         <span class="cart-price cart-column">${price}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button">REMOVE</button>
         </div>`
-    
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
